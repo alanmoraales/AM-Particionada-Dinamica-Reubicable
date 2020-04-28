@@ -1,7 +1,7 @@
 class FreeAreasTable:
 
     def __init__(self):
-        self.noColumn = []
+        #self.noColumn = []
         self.baseDirColumn = []
         self.limitColumn = []
         self.stateColumn = []
@@ -13,13 +13,17 @@ class FreeAreasTable:
         return free_area
 
     def add_element(self, baseDir, limit):
-        self.noColumn.append(len(self.noColumn + 1))
+
+        #self.noColumn.append(len(self.noColumn + 1))
         self.baseDirColumn.append(baseDir)
         self.limitColumn.append(limit)
         self.stateColumn.append("DISPONIBLE")
 
     def remove_element(self, index):
-        self.noColumn.pop(index)
+        #self.noColumn.pop(index)
         self.baseDirColumn.pop(index)
         self.limitColumn.pop(index)
         self.stateColumn.pop(index)
+
+    def get_last_index(self):
+        return len(self.baseDirColumn) - 1

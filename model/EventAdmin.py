@@ -14,3 +14,8 @@ class EventAdmin:
             return self.event_list[0]
         except IndexError:
             raise NoMoreEventsError
+
+    def there_is_more_events(self):
+        if len(self.event_list) > 0:
+            return True
+        return False
