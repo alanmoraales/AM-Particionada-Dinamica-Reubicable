@@ -116,10 +116,19 @@ class MemoryAdmin:
             self.free_areas_table.remove_element(index)
 
     def request_memory(self, size):
+        min_index = -1
         for index, limit in enumerate(self.free_areas_table.limitColumn):
             if limit >= size:
-                return index
-        return -1
+                min_index = index
+                break
+
+        # applying best adjust
+        if min_index != -1:
+            for index, limit in enumerate(self.free_areas_table.limitColumn):
+                if size <= limit < self.free_areas_table.limitColumn[min_index]:
+                    min_index = index
+
+        return min_index
 
     def print_tables(self):
         self.partitions_table.print()
