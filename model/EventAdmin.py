@@ -11,7 +11,7 @@ class EventAdmin:
 
     def next_event(self):
         try:
-            return self.event_list[0]
+            return self.event_list.pop(0)
         except IndexError:
             raise NoMoreEventsError
 

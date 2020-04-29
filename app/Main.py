@@ -18,3 +18,4 @@ event_admin.add_event(Event("LLEGA", "P8", 44))
 event_admin.add_event(Event("LLEGA", "P9", 28))
 
 memory_admin = MemoryAdmin(512, 64, event_admin)
+memory_admin.run()

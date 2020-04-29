@@ -1,10 +1,11 @@
+from tabulate import tabulate
+
+
 class FreeAreasTable:
 
     def __init__(self):
-        #self.noColumn = []
         self.baseDirColumn = []
         self.limitColumn = []
-        self.stateColumn = []
 
     def free_area(self):
         free_area = 0
@@ -12,18 +13,27 @@ class FreeAreasTable:
             free_area += size
         return free_area
 
-    def add_element(self, baseDir, limit):
-
-        #self.noColumn.append(len(self.noColumn + 1))
-        self.baseDirColumn.append(baseDir)
+    def add_element(self, base_dir, limit):
+        self.baseDirColumn.append(base_dir)
         self.limitColumn.append(limit)
-        self.stateColumn.append("DISPONIBLE")
 
     def remove_element(self, index):
-        #self.noColumn.pop(index)
         self.baseDirColumn.pop(index)
         self.limitColumn.pop(index)
-        self.stateColumn.pop(index)
 
     def get_last_index(self):
         return len(self.baseDirColumn) - 1
+
+    def generate_data(self):
+        data = []
+        for index, base_dir in enumerate(self.baseDirColumn):
+            limit = self.limitColumn[index]
+            data.append([index + 1, base_dir, limit])
+
+        return data
+
+    def print(self):
+        data = self.generate_data()
+        print("")
+        print("Tabla de Áreas Libres")
+        print(tabulate(data, headers=['No', 'Localidad', 'Tamaño']))

@@ -1,22 +1,35 @@
+from tabulate import tabulate
+
+
 class PartitionsTable:
 
     def __init__(self):
-        #self.noColumn = []
         self.baseDirColumn = []
         self.limitColumn = []
-        self.stateColumn = []
         self.processColumn = []
 
-    def add_partition(self, process_id, baseDir, limit):
-        #self.noColumn.append(len(self.noColumn) + 1)
-        self.baseDirColumn.append(baseDir)
+    def add_partition(self, process_id, base_dir, limit):
+        self.baseDirColumn.append(base_dir)
         self.limitColumn.append(limit)
-        self.stateColumn.append("ASIGNADO")
         self.processColumn.append(process_id)
 
     def delete_partition(self, index):
-        #self.noColumn.pop(index)
         self.baseDirColumn.pop(index)
         self.limitColumn.pop(index)
-        self.stateColumn.pop(index)
         self.processColumn.pop(index)
+
+    def generate_data(self):
+        data = []
+        for index, base_dir in enumerate(self.baseDirColumn):
+            limit = self.limitColumn[index]
+            process_id = self.processColumn[index]
+
+            data.append([index + 1, process_id, base_dir, limit])
+
+        return data
+
+    def print(self):
+        data = self.generate_data()
+        print("")
+        print("Tabla de Particiones")
+        print(tabulate(data, headers=['No', 'Proceso', 'Localidad', 'Tamaño']))
